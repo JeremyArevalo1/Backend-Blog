@@ -1,5 +1,6 @@
 import Courses from "../courses/course.model.js";
 import Publications from "../publications/publication.model.js";
+import Comments from "../comments/comment.model.js";
 
 export const existeCourseById = async (id = "") =>{
     const existeCurso = await Courses.findById(id);
@@ -15,6 +16,15 @@ export const existePublicationById = async (id = "") =>{
 
     if (!existePublication) {
         throw new Error(`La publicacion con Id ${id} no existe`);
+        
+    }
+}
+
+export const existeCommentById = async (id = "") =>{
+    const existeComment = await Comments.findById(id);
+
+    if (!existeComment) {
+        throw new Error(`El comentario con Id ${id} no existe`);
         
     }
 }

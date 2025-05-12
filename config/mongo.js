@@ -42,7 +42,7 @@ const createInitialCourses = async () => {
         if (!initialCourses) {
             const createCourses = [
                 {
-                    courseName: "Tecnología",
+                    courseName: "Tecnologia",
                     description: "Domina hardware y software para resolver problemas técnicos con eficiencia.",
                     status: true
                 },

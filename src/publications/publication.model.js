@@ -16,9 +16,17 @@ const PublicationSchema = Schema({
         required: [true, "Associated course is required"],
         ref: "courses"
     },
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: "comments"
+    }],
     creationDate: {
         type: Date,
         default: Date.now
+    },
+    expirationDate: {
+        type: Date,
+        required: [true, "Expiration date is required"],
     },
     status: {
         type: Boolean,

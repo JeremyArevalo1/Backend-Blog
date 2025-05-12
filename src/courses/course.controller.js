@@ -6,10 +6,6 @@ export const getCourses = async (req = request, res = response) => {
         const { limite = 10, desde = 0, nombre } = req.query;
         const query = { status: true };
 
-        if (nombre) {
-            query.courseName = { $regex: nombre, $options: 'i' };
-        }
-
         const [total, courses] = await Promise.all([
             Courses.countDocuments(query),
             Courses.find(query)
@@ -71,7 +67,7 @@ export const getCourseById = async (req, res) => {
 export const getCourseByName = async (req, res) => {
     try {
         const { nombre } = req.params;
-        const course = await Courses.findOne({ 
+        const course = await Courses.find({ 
             courseName: { $regex: nombre, $options: 'i' },
             status: true
         })

@@ -6,6 +6,8 @@ import { dbConnection } from "./mongo.js";
 import limiter from "../src/middlewares/validar-cant-peticiones.js";
 import courseRoutes from "../src/courses/course.routes.js";
 import publicationRoutes from "../src/publications/publication.routes.js";
+import commentRoutes from "../src/comments/comment.routes.js";
+import checkExpiredPublications from "../src/jobs/checkExpiredPublications.js";
 
 
 const middlewares = (app) => {
@@ -20,6 +22,7 @@ const middlewares = (app) => {
 const routes = (app) => {
     app.use('/blogdeaprendizaje/v1/courses', courseRoutes);
     app.use('/blogdeaprendizaje/v1/publications', publicationRoutes);
+    app.use('/blogdeaprendizaje/v1/comments', commentRoutes);
 
 }
 
@@ -39,6 +42,7 @@ export const initserver = async () => {
     try {
         middlewares(app);
         conectarDB();
+        checkExpiredPublications();
         routes(app);
         app.listen(port)
         console.log(`Server running on port ${port}`)

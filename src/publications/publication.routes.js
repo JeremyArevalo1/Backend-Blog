@@ -30,6 +30,7 @@ router.post(
         check("descriptionoftheactivity", "La descripción no puede exceder los 150 caracteres").isLength({ max: 150 }),
         check("associatedcourse", "El curso asociado es requerido").not().isEmpty(),
         check("associatedcourse", "No es un ID válido").isMongoId(),
+        check("expirationDate", "La fecha de vencimiento es requerida").not().isEmpty(),
         validarCampos
     ],
     createPublication
@@ -44,7 +45,8 @@ router.put(
         check("descriptionoftheactivity", "La descripción es requerida").not().isEmpty(),
         check("descriptionoftheactivity", "La descripción no puede exceder los 150 caracteres").isLength({ max: 150 }),
         check("associatedcourse", "El curso asociado es requerido").not().isEmpty(),
-        check("associatedcourse", "No es un ID válido").isMongoId(),        
+        check("associatedcourse", "No es un ID válido").isMongoId(),
+        check("expirationDate", "La fecha de vencimiento es requerida").not().isEmpty(),
         validarCampos
     ],
     updatePublication
@@ -58,4 +60,5 @@ router.delete(
     ],
     deletePublication
 )
+
 export default router;
