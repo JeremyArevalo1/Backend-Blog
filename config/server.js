@@ -7,7 +7,6 @@ import limiter from "../src/middlewares/validar-cant-peticiones.js";
 import courseRoutes from "../src/courses/course.routes.js";
 import publicationRoutes from "../src/publications/publication.routes.js";
 import commentRoutes from "../src/comments/comment.routes.js";
-import checkExpiredPublications from "../src/jobs/checkExpiredPublications.js";
 
 
 const middlewares = (app) => {
@@ -41,8 +40,7 @@ export const initserver = async () => {
 
     try {
         middlewares(app);
-        conectarDB();
-        checkExpiredPublications();
+        await conectarDB();
         routes(app);
         app.listen(port)
         console.log(`Server running on port ${port}`)

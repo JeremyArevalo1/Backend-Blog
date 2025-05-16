@@ -34,6 +34,65 @@ export const getPublications = async (req = request, res = response) => {
     }
 };
 
+export const getPublicationsByCourse = async (req, res) => {
+    const { courseId } = req.params;
+
+    try {
+        const publications = await Publication.find({
+            associatedcourse: courseId,
+            status: true
+        }).populate({
+            path: "comments",
+            match: { status: true }
+        });
+
+        res.status(200).json({
+            success: true,
+            publications
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            msg: "Error al obtener publicaciones por curso",
+            error
+        });
+    }
+};
+
+export const getPublicationsByCourseName = async (req, res) => {
+    const { name } = req.params;
+
+    try {
+        const publications = await Publication.find({
+            status: true
+        })
+        .populate({
+            path: 'associatedcourse',
+            match: { courseName: name }, // Buscar por nombre del curso
+            select: 'courseName'
+        })
+        .populate({
+            path: "comments",
+            match: { status: true }
+        });
+
+        // Filtrar publicaciones cuyo curso asociado no sea null (es decir, coincidió el nombre)
+        const filteredPublications = publications.filter(pub => pub.associatedcourse);
+
+        res.status(200).json({
+            success: true,
+            publications: filteredPublications
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            msg: "Error al obtener publicaciones por nombre del curso",
+            error
+        });
+    }
+};
+
 export const getPublicationsById = async (req, res) => {
     try {
         const { id } = req.params;

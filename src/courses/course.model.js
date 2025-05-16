@@ -9,7 +9,7 @@ const CoursesSchema = Schema({
     description: {
         type: String,
         required: [true, 'Description is required'],
-        maxLength: [80, 'cant be overcome 80 characters']
+        maxLength: [160, 'cant be overcome 160 characters']
 
     },
     publications: [{

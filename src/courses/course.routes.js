@@ -39,7 +39,7 @@ router.put(
         check("id").custom(existeCourseById),
         check("courseName", "El nombre es requerido").optional().not().isEmpty().custom(noDuplicadoAlEditar),
         check("courseName", "Máximo 60 caracteres").optional().isLength({ max: 60 }),
-        check("description", "Máximo 80 caracteres").optional().isLength({ max: 80 }),
+        check("description", "Máximo 160 caracteres").optional().isLength({ max: 160 }),
         validarCampos
     ],
     updateCourse

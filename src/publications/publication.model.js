@@ -24,10 +24,6 @@ const PublicationSchema = Schema({
         type: Date,
         default: Date.now
     },
-    expirationDate: {
-        type: Date,
-        required: [true, "Expiration date is required"],
-    },
     status: {
         type: Boolean,
         default: true

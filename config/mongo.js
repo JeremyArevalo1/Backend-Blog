@@ -43,17 +43,17 @@ const createInitialCourses = async () => {
             const createCourses = [
                 {
                     courseName: "Tecnologia",
-                    description: "Domina hardware y software para resolver problemas técnicos con eficiencia.",
+                    description: "Asignatura que desarrolla el pensamiento creativo y técnico, integrando ciencia y herramientas digitales para resolver problemas del entorno.",
                     status: true
                 },
                 {
                     courseName: "Taller",
-                    description: "Aprende programación práctica desarrollando proyectos reales desde cero.",
+                    description: "Espacio práctico donde los estudiantes fortalecen habilidades en informática mediante actividades aplicadas y trabajo colaborativo.",
                     status: true 
                 },
                 {
-                    courseName: "TICs", 
-                    description: "Redes, seguridad y cloud computing para la era digital.", 
+                    courseName: "Practica Supervisada", 
+                    description: "Espacio formativo donde los estudiantes aplican sus conocimientos en informática mediante proyectos reales, fortaleciendo habilidades técnicas y profesionales.", 
                     status: true 
                 }
             ];

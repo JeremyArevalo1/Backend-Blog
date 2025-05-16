@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { getPublications, getPublicationsById, createPublication, updatePublication, deletePublication } from "./publication.controller.js";
+import { getPublications, getPublicationsById, createPublication, updatePublication, deletePublication, getPublicationsByCourse, getPublicationsByCourseName } from "./publication.controller.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { existePublicationById } from "../helpers/db-validator.js";
 
@@ -12,7 +12,17 @@ router.get(
 );
 
 router.get(
-    "/:id",
+    '/by-course/:courseId',
+    getPublicationsByCourse
+);
+
+router.get(
+    '/by-course-name/:name',
+    getPublicationsByCourseName
+);
+
+router.get(
+    "/publications/:id",
     [
         check("id", "No es un ID válido").isMongoId(),
         check("id").custom(existePublicationById),
@@ -30,7 +40,6 @@ router.post(
         check("descriptionoftheactivity", "La descripción no puede exceder los 150 caracteres").isLength({ max: 150 }),
         check("associatedcourse", "El curso asociado es requerido").not().isEmpty(),
         check("associatedcourse", "No es un ID válido").isMongoId(),
-        check("expirationDate", "La fecha de vencimiento es requerida").not().isEmpty(),
         validarCampos
     ],
     createPublication
@@ -46,7 +55,6 @@ router.put(
         check("descriptionoftheactivity", "La descripción no puede exceder los 150 caracteres").isLength({ max: 150 }),
         check("associatedcourse", "El curso asociado es requerido").not().isEmpty(),
         check("associatedcourse", "No es un ID válido").isMongoId(),
-        check("expirationDate", "La fecha de vencimiento es requerida").not().isEmpty(),
         validarCampos
     ],
     updatePublication
