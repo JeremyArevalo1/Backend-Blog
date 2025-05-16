@@ -13,7 +13,6 @@ const CommentsSchema = Schema({
     },
     publication: {
         type: Schema.Types.ObjectId,
-        required: [true, 'publication is required'],
         ref: "publications"
     },
     creationDate: {
