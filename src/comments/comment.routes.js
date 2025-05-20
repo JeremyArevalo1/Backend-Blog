@@ -34,7 +34,6 @@ router.get(
 router.post(
     "/",
     [
-        check("nameUser", "El nombre del usuario es requerido").not().isEmpty(),
         check("nameUser", "El nombre del usuario no puede exceder los 30 caracteres").isLength({ max: 30 }),
         check("comment", "El comentario es requerido").not().isEmpty(),
         check("comment", "El comentario no puede exceder los 150 caracteres").isLength({ max: 150 }),

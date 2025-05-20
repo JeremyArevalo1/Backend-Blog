@@ -3,8 +3,10 @@ import { Schema, model } from "mongoose";
 const CommentsSchema = Schema({
     nameUser: {
         type: String,
-        required: [true, 'the username is required'],
-        maxLength: [30, 'cant be overcome 30 characters']
+        maxLength: [30, 'cant be overcome 30 characters'],
+        set: function(name) {
+            return !name || name.trim() === '' ? 'Anónimo' : name;
+        }
     },
     comment: {
         type: String,
